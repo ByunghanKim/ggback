@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gg.ggback.mapper.MemberMapper">
+    <select id="selectAllMember" resultType="com.gg.ggback.dto.MemberDto">
+        SELECT * from member;
+    </select>
+
+    <insert id="insertMember">
+        INSERT INTO member(id,pw,name,reg_date) VALUES (#{id},#{pw},#{name},#{reg_date})
+    </insert>
+
+    <delete id="deleteMember">
+        DELETE FROM member WHERE id=#{id}
+    </delete>
+
+    <update id="updatePassword">
+        UPDATE member SET pw=#{pw} where id=#{id}
+    </update>
+</mapper>

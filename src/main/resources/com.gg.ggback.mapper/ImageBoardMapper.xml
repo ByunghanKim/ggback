@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gg.ggback.mapper.ImageBoardMapper">
+    
+    <select id="selectAllImage" resultType="com.gg.ggback.dto.ImageBoardDto">
+        SELECT * from image_board order by date DESC;
+    </select>
+    
+    <insert id="insertImage" parameterType="com.gg.ggback.dto.ImageBoardDto">
+        INSERT INTO image_board VALUES (#{title},#{date},#{content},#{img_origin_name},#{img_name});
+    </insert>
+</mapper>
