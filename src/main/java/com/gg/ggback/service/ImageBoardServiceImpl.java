@@ -4,7 +4,6 @@ import com.gg.ggback.dto.ImageBoardDto;
 import com.gg.ggback.mapper.ImageBoardMapper;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
