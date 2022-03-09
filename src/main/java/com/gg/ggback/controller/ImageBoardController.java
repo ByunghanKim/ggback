@@ -27,17 +27,20 @@ public class ImageBoardController {
 
     @GetMapping("/load")
     public List<ImageBoardDto> loadPage() {
+
         List<ImageBoardDto> ibd = imageBoardService.selectAllImage();
+
         return ibd;
+
     }
 
     @GetMapping("img/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable String id) throws IOException {
-        InputStream imageStream = new FileInputStream("C:\\boottest/" + id);
-        byte[] imgByteArray = IOUtils.toByteArray(imageStream);
-        imageStream.close();
 
-        return new ResponseEntity<byte[]>(imgByteArray, HttpStatus.OK);
+        byte[] image = imageBoardService.findImageById(id);
+
+        return new ResponseEntity<>(image, HttpStatus.OK);
+
     }
 
     @PostMapping("img/upload")
