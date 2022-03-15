@@ -18,7 +18,7 @@ public class ImageBoardServiceImpl implements ImageBoardService{
 
     final ImageBoardMapper imageBoardMapper;
 
-    String imagePath = "c:\\ggWebImages/";
+    final String imagePath = "c:\\ggWebImages/";
 
 
     @Autowired
