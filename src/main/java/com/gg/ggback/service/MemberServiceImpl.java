@@ -3,6 +3,7 @@ package com.gg.ggback.service;
 import com.gg.ggback.dto.MemberDto;
 import com.gg.ggback.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -13,9 +14,12 @@ public class MemberServiceImpl implements MemberService {
 
     final MemberMapper memberMapper;
 
+    final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
-    public MemberServiceImpl(MemberMapper memberMapper) {
+    public MemberServiceImpl(MemberMapper memberMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.memberMapper = memberMapper;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -27,7 +31,21 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void insertMember(String id, String pw, String name, Timestamp reg_date) {
-        memberMapper.insertMember(id,pw,name,reg_date);
+    public MemberDto selectMember(String id) {
+
+        MemberDto dto = memberMapper.selectMember(id);
+
+        return dto;
+    }
+
+    @Override
+    public void insertMember(MemberDto memberDto) {
+
+        memberDto.setPw(bCryptPasswordEncoder.encode(memberDto.getPw()));
+        memberDto.setReg_date(new Timestamp(System.currentTimeMillis()));
+        memberDto.setRoles("ROLE_USER");
+
+        memberMapper.insertMember(memberDto);
+
     }
 }

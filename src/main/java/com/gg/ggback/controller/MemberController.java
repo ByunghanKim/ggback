@@ -2,15 +2,14 @@ package com.gg.ggback.controller;
 
 import com.gg.ggback.dto.MemberDto;
 import com.gg.ggback.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
@@ -27,17 +26,30 @@ public class MemberController {
         return result;
     }
 
-    @PostMapping("/")
-    public void addMember() {
-        memberService.insertMember("test","3456","park",new Timestamp(System.currentTimeMillis()));
+    @PostMapping("/join")
+    public String join(@RequestBody MemberDto memberDto) {
+
+        memberService.insertMember(memberDto);
+
+        return "회원가입 완료";
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody MemberDto memberDto) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findMemberById(@PathVariable String id, HttpServletRequest request) {
 
-        System.out.println(memberDto.getId());
-        System.out.println(memberDto.getPw());
+        String reqId = (String) request.getAttribute("id");
 
-        return new ResponseEntity<>("OK", HttpStatus.OK);
+        MemberDto dto = memberService.selectMember(id);
+
+        if (reqId == null) {
+            return new ResponseEntity<>("잘못된 접근 입니다.", HttpStatus.BAD_REQUEST);
+        } else if (reqId.equals(dto.getId()) != true) {
+            return new ResponseEntity<>("잘못된 접근 입니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        dto.setPw("");
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+
     }
 }

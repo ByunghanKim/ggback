@@ -8,7 +8,13 @@ import java.util.List;
 
 public interface MemberService {
 
+    //모든 회원 찾기
     List<MemberDto> selectAllMember();
-    void insertMember(String id, String pw, String name, Timestamp reg_date);
+
+    //아이디로 회원 한명 찾기
+    MemberDto selectMember(String id);
+
+    //회원 추가
+    void insertMember(MemberDto memberDto);
 
 }

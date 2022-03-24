@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -77,6 +78,9 @@ public class ImageBoardServiceImpl implements ImageBoardService{
         byte[] imgByteArray = IOUtils.toByteArray(imageStream);
 
         imageStream.close();
+
+        String image = Base64.getEncoder().encodeToString(imgByteArray);
+
         return imgByteArray;
     }
 
