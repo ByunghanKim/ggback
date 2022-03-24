@@ -7,8 +7,11 @@
         SELECT * from member;
     </select>
 
-    <insert id="insertMember">
-        INSERT INTO member(id,pw,name,reg_date) VALUES (#{id},#{pw},#{name},#{reg_date})
+    <select id="selectMember" parameterType="String" resultType="com.gg.ggback.dto.MemberDto">
+        SELECT * from member WHERE id=#{value}
+    </select>
+    <insert id="insertMember" parameterType="com.gg.ggback.dto.MemberDto">
+        INSERT INTO member(id,pw,name,reg_date,roles) VALUES (#{id},#{pw},#{name},#{reg_date},#{roles})
     </insert>
 
     <delete id="deleteMember">

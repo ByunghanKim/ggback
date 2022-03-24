@@ -10,6 +10,7 @@ import java.util.List;
 public interface MemberMapper {
 
     List<MemberDto> selectAllMember();
-    void insertMember(String id, String pw, String name, Timestamp reg_date);
+    MemberDto selectMember(String id);
+    void insertMember(MemberDto memberDto);
 
 }
