@@ -6,6 +6,6 @@
 ## ggback
 - ggWeb의 API
 - 프론트(ggfront)에서 요청 시 필요한 데이터 (ex. 이미지, 게시글, 댓글 등)를 JSON 형태로 반환
-- 이미지 게시판 ~~C~~ R ~~U~~ ~~D~~ 구현
+- 이미지 게시판 ~~Create~~ Read ~~Update~~ ~~Delete~~ 구현
 - 스프링 시큐리티 적용
 - JWT 로그인 처리
