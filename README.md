@@ -9,3 +9,6 @@
 - 이미지 게시판 ~~Create~~ Read ~~Update~~ ~~Delete~~ 구현
 - 스프링 시큐리티 적용
 - JWT 로그인 처리
+- 공지사항 게시판 Create Read Update Delete 구현
+- 회원가입 구현
+- 댓글 기능 구현중
