@@ -73,6 +73,7 @@ public class ImageBoardServiceImpl implements ImageBoardService{
 
     @Override
     public byte[] findImageById(String id) throws IOException {
+
         InputStream imageStream = new FileInputStream(imagePath + id);
 
         byte[] imgByteArray = IOUtils.toByteArray(imageStream);

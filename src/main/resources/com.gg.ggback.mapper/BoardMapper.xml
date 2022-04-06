@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gg.ggback.mapper.BoardMapper">
+
+    <select id="selectAllContent" parameterType="String" resultType="com.gg.ggback.dto.BoardDto">
+        SELECT * from ${value} order by num DESC;
+    </select>
+
+    <select id="selectContents" parameterType="map" resultType="com.gg.ggback.dto.BoardDto">
+        SELECT * FROM ${tableName} ORDER BY num DESC LIMIT ${limit} OFFSET ${offset};
+    </select>
+
+    <select id="selectBoardTotalCount" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM ${tableName};
+    </select>
+
+    <select id="getContentDetail" parameterType="map" resultType="com.gg.ggback.dto.BoardDto">
+        SELECT * FROM ${tableName} WHERE num = ${num};
+    </select>
+
+    <update id="increaseView" parameterType="map">
+        UPDATE ${tableName} SET views = views + 1 WHERE num = ${num};
+    </update>
+
+    <insert id="insertBoard" parameterType="map">
+        INSERT INTO ${tableName}(title,content,writer,date) VALUES (#{boardDto.title},#{boardDto.content},#{boardDto.writer},#{boardDto.date});
+    </insert>
+
+    <delete id="deleteContent" parameterType="map">
+        DELETE FROM ${tableName} WHERE num = ${num};
+    </delete>
+
+    <update id="updateContent" parameterType="map">
+        UPDATE ${tableName} SET title=#{title}, content=#{content} WHERE num = ${num};
+    </update>
+</mapper>

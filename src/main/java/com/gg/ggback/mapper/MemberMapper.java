@@ -12,5 +12,6 @@ public interface MemberMapper {
     List<MemberDto> selectAllMember();
     MemberDto selectMember(String id);
     void insertMember(MemberDto memberDto);
+    int verifyId(String id);
 
 }

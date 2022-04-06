@@ -48,4 +48,12 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.insertMember(memberDto);
 
     }
+
+    @Override
+    public int verifyId(String id) {
+
+        int result = memberMapper.verifyId(id);
+
+        return result;
+    }
 }
