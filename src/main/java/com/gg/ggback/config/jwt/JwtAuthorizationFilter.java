@@ -6,6 +6,8 @@ import com.gg.ggback.dto.MemberDto;
 import com.gg.ggback.service.MemberService;
 import io.jsonwebtoken.Jwts;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,8 +43,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         //System.out.println("jwtHeader : " + jwtHeader);
 
         //헤더가 있는지 확인
-        if(jwtHeader == null) {
-            chain.doFilter(request,response);
+        if (jwtHeader == null) {
+            chain.doFilter(request, response);
             return;
         }
 
@@ -56,21 +58,22 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
         //System.out.println(id);
 
-        if(id != null) {
+        if (id != null) {
             MemberDto memberDto = memberService.selectMember(id);
 
             PrincipalDetails principalDetails = new PrincipalDetails(memberDto);
 
             //System.out.println("authentication 강제로 만든다");
             Authentication authentication =
-                    new UsernamePasswordAuthenticationToken(principalDetails,null, principalDetails.getAuthorities());
+                    new UsernamePasswordAuthenticationToken(principalDetails, null, principalDetails.getAuthorities());
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            request.setAttribute("id",principalDetails.getUsername());
+            request.setAttribute("id", principalDetails.getUsername());
 
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
+
 
     }
 }

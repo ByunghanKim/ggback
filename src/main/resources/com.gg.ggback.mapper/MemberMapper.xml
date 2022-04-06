@@ -21,4 +21,9 @@
     <update id="updatePassword">
         UPDATE member SET pw=#{pw} where id=#{id}
     </update>
+
+    <select id="verifyId" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM member WHERE id=#{id};
+    </select>
+
 </mapper>

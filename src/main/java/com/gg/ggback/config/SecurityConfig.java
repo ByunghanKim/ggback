@@ -44,12 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(),memberService))
                 .authorizeRequests()
-                .antMatchers("/api/**")
+                .antMatchers("/api/imgboard/**")
                 .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/manager/**")
                 .access("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/admin/**")
                 .access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/board/freeboard/**").permitAll()
+                .antMatchers("/api/board/id/**").permitAll()
                 .anyRequest().permitAll();
 
 

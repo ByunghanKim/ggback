@@ -17,4 +17,7 @@ public interface MemberService {
     //회원 추가
     void insertMember(MemberDto memberDto);
 
+    //회원 아이디 조회
+    int verifyId(String id);
+
 }

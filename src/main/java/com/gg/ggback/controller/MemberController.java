@@ -50,6 +50,20 @@ public class MemberController {
         dto.setPw("");
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PostMapping("/id")
+    public ResponseEntity<Integer> verifyId(
+            @RequestParam("id") String id
+    ) {
+        int result = memberService.verifyId(id);
+
+        if(result > 0) {
+            return new ResponseEntity<>(1,HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(0,HttpStatus.OK);
+        }
 
     }
+
 }
