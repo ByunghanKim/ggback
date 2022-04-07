@@ -11,4 +11,4 @@
 - JWT 로그인 처리
 - 공지사항 게시판 Create Read Update Delete 구현
 - 회원가입 구현
-- 댓글 기능 구현중
+- 댓글 조회, 추가 기능
