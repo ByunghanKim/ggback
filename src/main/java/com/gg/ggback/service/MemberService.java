@@ -15,7 +15,7 @@ public interface MemberService {
     MemberDto selectMember(String id);
 
     //회원 추가
-    void insertMember(MemberDto memberDto);
+    void insertMember(String id, String pw, String name);
 
     //회원 아이디 조회
     int verifyId(String id);

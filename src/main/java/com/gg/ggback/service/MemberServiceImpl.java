@@ -39,9 +39,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void insertMember(MemberDto memberDto) {
+    public void insertMember(String id, String pw, String name) {
 
-        memberDto.setPw(bCryptPasswordEncoder.encode(memberDto.getPw()));
+        MemberDto memberDto = new MemberDto();
+
+        memberDto.setId(id);
+        memberDto.setName(name);
+        memberDto.setPw(bCryptPasswordEncoder.encode(pw));
         memberDto.setReg_date(new Timestamp(System.currentTimeMillis()));
         memberDto.setRoles("ROLE_USER");
 

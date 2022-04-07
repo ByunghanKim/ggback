@@ -1,6 +1,7 @@
 package com.gg.ggback.controller;
 
 import com.gg.ggback.dto.BoardDto;
+import com.gg.ggback.dto.ReplyDto;
 import com.gg.ggback.service.BoardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -108,5 +109,36 @@ public class BoardController {
         String result = boardService.insertBoard(title,content,writer,tableName);
 
         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @PostMapping("/freeboard/insert/reply")
+    public void insertReply(
+            @RequestParam("boardType") String boardType,
+            @RequestParam("id") String id,
+            @RequestParam("content") String content,
+            @RequestParam("contentNum") String contentNum
+    ) {
+
+        String replyTableName = boardType + "_reply";
+
+        String boardTableName = boardType + "_board";
+
+        boardService.insertReply(replyTableName,id,content,contentNum);
+
+        boardService.increaseReplyNum(boardTableName, contentNum);
+
+    }
+
+    @GetMapping("/freeboard/load/reply")
+    public List<ReplyDto> loadReply(
+            @RequestParam("boardType") String boardType,
+            @RequestParam("num") String num
+    ) {
+
+        String tableName = boardType + "_reply";
+
+        List<ReplyDto> replyDtos = boardService.loadReply(tableName, Integer.parseInt(num));
+
+        return replyDtos;
     }
 }

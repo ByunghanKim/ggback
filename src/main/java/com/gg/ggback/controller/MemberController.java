@@ -27,9 +27,13 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody MemberDto memberDto) {
+    public String join(
+            @RequestParam("id") String id,
+            @RequestParam("pw") String pw,
+            @RequestParam("name") String name
+            ) {
 
-        memberService.insertMember(memberDto);
+        memberService.insertMember(id,pw,name);
 
         return "회원가입 완료";
     }
