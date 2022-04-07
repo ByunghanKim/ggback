@@ -35,4 +35,16 @@
     <update id="updateContent" parameterType="map">
         UPDATE ${tableName} SET title=#{title}, content=#{content} WHERE num = ${num};
     </update>
+
+    <insert id="insertReply" parameterType="map">
+        INSERT INTO ${tableName}(content_num,id,date,content) VALUES (#{contentNum},#{id},#{date},#{content});
+    </insert>
+
+    <select id="loadReply" parameterType="map" resultType="com.gg.ggback.dto.ReplyDto">
+        SELECT * FROM ${tableName} WHERE content_num = ${num} ORDER BY num ASC;
+    </select>
+
+    <update id="increaseReplyNum" parameterType="map">
+        UPDATE ${tableName} SET reply_num= reply_num + 1 WHERE num = ${num};
+    </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.gg.ggback.mapper;
 
 import com.gg.ggback.dto.BoardDto;
+import com.gg.ggback.dto.ReplyDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public interface BoardMapper {
     void increaseView(Map map);
     void deleteContent(Map map);
     void updateContent(Map map);
+    void insertReply(Map map);
+    List<ReplyDto> loadReply(Map map);
+    void increaseReplyNum(Map map);
 
 
 }

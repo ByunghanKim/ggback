@@ -1,6 +1,7 @@
 package com.gg.ggback.service;
 
 import com.gg.ggback.dto.BoardDto;
+import com.gg.ggback.dto.ReplyDto;
 import com.gg.ggback.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
 
@@ -113,5 +114,47 @@ public class BoardServiceImpl implements BoardService{
         map.put("content", content);
 
         boardMapper.updateContent(map);
+    }
+
+    @Override
+    public void insertReply(String tableName, String id, String content, String contentNum) {
+
+        Map map = new HashMap<>();
+
+
+
+        map.put("tableName", tableName);
+        map.put("id", id);
+        map.put("content",content);
+        map.put("contentNum", Integer.parseInt(contentNum));
+        map.put("date", new Timestamp(System.currentTimeMillis()));
+
+        boardMapper.insertReply(map);
+
+    }
+
+    @Override
+    public List<ReplyDto> loadReply(String tableName, int num) {
+
+        Map map = new HashMap<>();
+
+        map.put("tableName", tableName);
+        map.put("num", num);
+
+        List<ReplyDto> replyDtos = boardMapper.loadReply(map);
+
+        return replyDtos;
+    }
+
+    @Override
+    public void increaseReplyNum(String tableName, String contentNum) {
+
+        Map map = new HashMap<>();
+
+        map.put("tableName", tableName);
+        map.put("num", contentNum);
+
+        boardMapper.increaseReplyNum(map);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.gg.ggback.service;
 
 import com.gg.ggback.dto.BoardDto;
+import com.gg.ggback.dto.ReplyDto;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,12 @@ public interface BoardService {
     void deleteContent(String tableName, int num);
 
     void updateContent(String tableName, int num, String title, String content);
+
+    void insertReply(String tableName, String id, String content, String contentNum);
+
+    List<ReplyDto> loadReply(String tableName, int num);
+
+    void increaseReplyNum(String tableName, String contentNum);
 
 
 
