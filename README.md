@@ -1,14 +1,27 @@
 # ggWeb 소개
 
-- Vue, SpringBoot 공부를 위한 일반 사이트
-
+가족 근황 공유 홈페이지 개인 프로젝트 입니다.
 
 ## ggback
-- ggWeb의 API
-- 프론트(ggfront)에서 요청 시 필요한 데이터 (ex. 이미지, 게시글, 댓글 등)를 JSON 형태로 반환
-- 이미지 게시판 ~~Create~~ Read ~~Update~~ ~~Delete~~ 구현
-- 스프링 시큐리티 적용
-- JWT 로그인 처리
-- 공지사항 게시판 Create Read Update Delete 구현
-- 회원가입 구현
-- 댓글 조회, 추가 기능
+* ggWeb의 API
+
+## 사용한 기술스택
+* JAVA 8
+* SpringBoot
+* SpringSecurity
+* Mybatis
+* MySQL
+* JWT
+
+## 구현 기능
+* 계정
+  * 로그인, 로그아웃 기능
+  * 회원 가입
+  * 중복 아이디 검색
+* 게시판
+  * 게시글 CRUD
+  * 댓글 CRUD
+  * 페이징 처리
+* 이미지 게시판
+  * 이미지 업로드
+  * 이미지 조회
